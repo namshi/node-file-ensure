@@ -1,6 +1,6 @@
 ## file-ensure
 
-[![Build Status](https://travis-ci.org/namshi/file-ensure.svg?branch=master)](https://travis-ci.org/namshi/file-ensure)
+[![Build Status](https://travis-ci.org/namshi/node-file-ensure.svg?branch=master)](https://travis-ci.org/namshi/node-file-ensure)
 
 Simply ensure that a file exists, else create it: this becomes handy
 when you provide skeleton file, like `config_dev.yml.example` that should
@@ -51,4 +51,4 @@ ensure('path/to/config_dev.yml', {src: 'path/to/config_dev.yml.example'}, functi
 ## Tests
 
 This small library is tested through mocha, while
-automated tests run on [travis](https://travis-ci.org/namshi/file-ensure).
+automated tests run on [travis](https://travis-ci.org/namshi/node-file-ensure).
