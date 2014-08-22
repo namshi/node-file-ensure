@@ -18,9 +18,19 @@ npm install file-ensure
 
 ## Usage
 
-Simply require the module and call it for
-every file you want to make sure that exists
-in your filesystem:
+The mdule's usage is straightforward:
+
+```
+ensure(filePath, options, callback)
+
+# or
+
+ensure(filePath, callback)
+```
+
+Simply require and use it for every file 
+you want to make sure that exists in 
+your filesystem:
 
 ``` javascript
 var ensure = require('file-ensure');
@@ -29,6 +39,14 @@ ensure('path/to/config_dev.yml');
 ```
 
 Simple as that :)
+
+You can also create the file from another file:
+
+``` javascript
+ensure('path/to/config_dev.yml', {src: 'path/to/config_dev.yml.example'}, function(err){
+  console.log(fs.readFileSync('path/to/config_dev.yml').toString() === fs.readFileSync('path/to/config_dev.yml.example').toString());
+});
+```
 
 ## Tests
 
