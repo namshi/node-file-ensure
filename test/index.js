@@ -23,6 +23,28 @@ describe('ensure', function(){
       }
     })
     
+    it('should be able to create a file from an existing file', function(){
+      try {
+        fs.readFileSync('./i-dont-exist.log');
+        
+        assert.fail(0, 1, 'The file should not pre-exist');
+      } catch (err) {
+        ensure('./i-dont-exist.log', {src: './package.json'}, function(){
+          var check = fs.readFileSync('./i-dont-exist.log');
+          
+          assert.equal(check.toString(), fs.readFileSync('./package.json').toString());
+        });
+      }
+    })
+    
+    it('should not be able to copy if the ensured file already exists', function(){
+      ensure('./package.json', {src: './README.md'}, function(){
+        var check = fs.readFileSync('./README.md');
+        
+        assert.equal(false, check.toString() === fs.readFileSync('./package.json').toString());
+      });
+    })
+    
     it('should not override a file if it already exists', function(){
       var content = fs.readFileSync('./package.json');
       
