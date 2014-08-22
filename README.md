@@ -1,6 +1,6 @@
 ## file-ensure
 
-[![Build Status](https://magnum.travis-ci.com/namshi/file-ensure.svg?token=MxqAgNuVLsuCrtxWfKzR&branch=master)](https://magnum.travis-ci.com/namshi/file-ensure)
+[![Build Status](https://travis-ci.org/namshi/file-ensure.svg?branch=master)](https://travis-ci.org/namshi/file-ensure)
 
 Simply ensure that a file exists, else create it: this becomes handy
 when you provide skeleton file, like `config_dev.yml.example` that should
