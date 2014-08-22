@@ -1,6 +1,11 @@
 var ensure  = require('../src/index.js');
 var fs      = require('fs');
 var assert  = require('assert');
+var unlink  = function(what) {
+  try {
+    fs.unlinkSync(what);
+  }  catch (err){};
+}
 
 describe('ensure', function(){
   describe('#()', function(){
@@ -11,30 +16,24 @@ describe('ensure', function(){
       );
     })
     
-    it('should create a file if it doesnt exist', function(){
-      try {
+    it('should create a file if it doesnt exist', function(done){
+      unlink('./i-dont-exist.log');
+      
+      ensure('./i-dont-exist.log', function(){
         fs.readFileSync('./i-dont-exist.log');
-        
-        assert.fail(0, 1, 'The file should not pre-exist');
-      } catch (err) {
-        ensure('./i-dont-exist.log', function(){
-          fs.readFileSync('./i-dont-exist.log');
-        });
-      }
+        done();
+      });
     })
     
-    it('should be able to create a file from an existing file', function(){
-      try {
-        fs.readFileSync('./i-dont-exist.log');
+    it('should be able to create a file from an existing file', function(done){
+      unlink('./i-dont-exist.log');
+      
+      ensure('./i-dont-exist.log', {src: './package.json'}, function(){
+        var check = fs.readFileSync('./i-dont-exist.log');
         
-        assert.fail(0, 1, 'The file should not pre-exist');
-      } catch (err) {
-        ensure('./i-dont-exist.log', {src: './package.json'}, function(){
-          var check = fs.readFileSync('./i-dont-exist.log');
-          
-          assert.equal(check.toString(), fs.readFileSync('./package.json').toString());
-        });
-      }
+        assert.equal(check.toString(), fs.readFileSync('./package.json').toString());
+        done();
+      });
     })
     
     it('should not be able to copy if the ensured file already exists', function(){

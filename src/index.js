@@ -19,12 +19,14 @@ module.exports = function(path, options, callback) {
     throw new Error('path cannot be empty');
   }
   
+  var fileExisted = fs.existsSync(path);
+  
   fs.createFile(path.toString(), function(err){
     if (err) {
       throw err;
     }
     
-    if (!fs.existsSync(path) && options.src) {
+    if (!fileExisted && options.src) {
       fs.writeFileSync(path, fs.readFileSync(options.src));
     }
     
