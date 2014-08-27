@@ -22,9 +22,6 @@
     "url": "https://github.com/namshi/file-ensure/issues"
   },
   "homepage": "https://github.com/namshi/file-ensure",
-  "dependencies": {
-    "node-fs-extra": "^0.8.1"
-  },
   "devDependencies": {
     "mocha": "^1.21.4"
   }
