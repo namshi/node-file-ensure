@@ -1,6 +1,6 @@
 {
   "name": "file-ensure",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Ensures that a file exists: if not, it creates it.",
   "main": "src/index.js",
   "scripts": {
